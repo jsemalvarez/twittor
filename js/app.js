@@ -1,7 +1,19 @@
 
+/**
+ * Como el proyecto lo alojamos en github pages, el path /sw.js' no es valido
+ */
+var url = window.location.href
+var swLocation = '/twittor/sw.js'
 
 if( navigator.serviceWorker ){
-    navigator.serviceWorker.register('/sw.js')
+
+    // en desarrollo
+    if( url.includes('localhost') ){
+        swLocation = '/sw.js'
+    }
+
+    //en produccion
+    navigator.serviceWorker.register( swLocation )
 }
 
 
